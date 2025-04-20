@@ -1,0 +1,28 @@
+<!-- templates/core/checkout.html -->
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+<main class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Checkout</h1>
+                <form method="post" action="{% url 'core:checkout' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Place Order</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <h2>Order Summary</h2>
+                <ul>
+                    {% for p_id, item in cart_data.items %}
+                    <li>{{ item.title }} x {{ item.qty }} - PKR{{ item.price }}</li>
+                    {% endfor %}
+                </ul>
+                <p>Total: PKR{{ total_amount }}</p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

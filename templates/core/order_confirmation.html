@@ -1,0 +1,12 @@
+{% extends 'partials/base.html' %}
+{% block content %}
+<h2>Order Confirmation</h2>
+<p>Thank you for your order!</p>
+<p>Order Number: {{ order.id }}</p>
+<ul>
+    {% for item in order.cartorderproducts_set.all %}
+    <li>{{ item.item }} - {{ item.qty }} x PKR{{ item.price }} = PKR{{ item.total }}</li>
+    {% endfor %}
+</ul>
+<p>Total Amount: PKR{{ order.price }}</p>
+{% endblock content %}

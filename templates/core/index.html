@@ -1,0 +1,194 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+
+    <main class="main">
+        <div class="container mb-30">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-4-5">
+                    <section class="home-slider position-relative mb-30">
+                        <div class="home-slide-cover mt-30">
+                            <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
+                                <div class="single-hero-slider single-animation-wrap" style="background-image: url({% static 'assets/imgs/slider/slider-1.webp' %})">
+                                    
+                                </div>
+                                <div class="single-hero-slider single-animation-wrap" style="background-image: url({% static 'assets/imgs/slider/slider-2.webp' %})">
+                                    
+                                </div>
+                                <div class="single-hero-slider single-animation-wrap" style="background-image: url({% static 'assets/imgs/slider/slider-3.webp' %})">
+                                    
+                                </div>
+                                <div class="single-hero-slider single-animation-wrap" style="background-image: url({% static 'assets/imgs/slider/slider-4.webp' %})">
+                                    
+                                </div>
+                                <div class="single-hero-slider single-animation-wrap" style="background-image: url({% static 'assets/imgs/slider/slider-5.webp' %})">
+                                    
+                                </div>
+
+                            </div>
+                            <div class="slider-arrow hero-slider-1-arrow"></div>
+                        </div>
+                    </section>
+                                              
+                    <!--End hero-->
+                    <section class="product-tabs section-padding position-relative">
+                        <div class="section-title style-2">
+                            <h3>Popular Products</h3>
+                            
+                        </div>
+                        <!--End nav-tabs-->
+                        
+                        <div class="loop-grid pr-30">
+                            <div class="row ">
+                            {% for p in products %}
+                            <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated ">
+                                <div class="product-img product-img-zoom">
+                                    <a href="{% url 'core:product-detail' p.pid %}">
+                                        <img class="default-img" src="{{ p.image.url }}" alt="" style="height: 280px; width: 280px; object-fit: cover;"   />
+                                                
+                                    </a>
+                                    
+                                </div>
+                                <div class="entry-content-2">
+                                    <h4 class="post-title mb-15">
+                                        <a href="{% url 'core:product-detail' p.pid %}">{{ p.title }}</a>
+                                    </h4>
+                                    
+                                </div>
+                            
+                                <div class="product-extra-link2">
+                                                        
+                                    <input type="hidden" class="product-pid-{{ p.id }}" value="{{ p.pid }}">
+                                    <input type="hidden" class="product-image-{{ p.id }}" value="{{ p.image.url }}">
+                                    <input type="hidden" class="product-id-{{ p.id }}" value="{{ p.id }}">
+                                    <input type="hidden" class="product-title-{{ p.id }}" value="{{ p.title }}">
+    
+                                
+                                
+                                
+                            </div>
+                            </article>
+                            {% endfor %}
+                        </div>
+
+                        <div class="shop-product-fillter mb-50 pr-30">
+                            <div class="totall-product">
+                                <h2>
+                                    Best Sellers
+                                </h2>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row vendor-grid">
+                            {% for v in vendors %}
+                            <div class="col-lg-6 col-md-6 col-12 col-sm-6">
+                                <div class="vendor-wrap style-2 mb-40">
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <!-- <span class="hot">Mall</span> -->
+                                    </div>
+                                    <div class="vendor-img-action-wrap">
+                                        <div class="vendor-img">
+                                            <a href="{% url 'core:vendor-detail' v.vid %}">
+                                                <img class="default-img" src="{{v.image.url}}" alt="" />
+                                            </a>
+                                        </div>
+                                        <div class="mt-10">
+                                            <span class="font-small total-product">{{v.product.all.count}} Products</span>
+                                        </div>
+                                    </div>
+                                    <div class="vendor-content-wrap">
+                                        <div class="mb-30">
+                                            
+                                            <h4 class="mb-5"><a href="{% url 'core:vendor-detail' v.vid %}">{{v.title}}</a></h4>
+                                            <div class="product-rate-cover">
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 90%"></div>
+                                                </div>
+                                                <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                            </div>
+                                            
+                                            <br>
+                                            <a href="{% url 'core:vendor-detail' v.vid %}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>       
+                        <div class="page-content mb-50">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-9">
+                                        <div class="shop-product-fillter mb-50 pr-30">
+                                            <div class="totall-product">
+                                                <h2>
+                                                    Shop By Category
+                                                </h2>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="hello">
+                
+                                        </div>
+                    <div class="loop-grid pr-30">
+                        <div class="row ">
+                        {% for c in categories %}
+                        <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
+                            <div class="post-thumb">
+                                <a href="{% url 'core:category-product-list' c.cid %}">
+                                    <img style="height: 300px; width: 300px; object-fit: cover;" class="border-radius-15" src="{{c.image.url}}" alt="" />
+                                </a>
+                                
+                            </div>
+                            <div class="entry-content-2">
+                                <h4 class="post-title mb-15">
+                                    <a href="{% url 'core:category-product-list' c.cid %}">{{ c.title }}</a>
+                                </h4>
+                                <div class="entry-meta font-xs color-grey mt-10 pb-10">
+                                    <div>
+                                        <span class="hit-count mr-10">{{c.category.count}} Product{{c.category.count|pluralize}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </div>
+                                <!--End product-grid-4-->
+                            </div>
+                            
+                            
+                    </section>
+                    
+                                        
+                    <!--End Deals-->
+                    
+                    <!--End banners-->
+                </div>
+                <div class="col-lg-6-5 primary-sidebar sticky-sidebar pt-30" >
+                    <div class="sidebar-widget widget-category-2 mb-30">
+                        <h5 class="section-title style-1 mb-30">Category</h5>
+                        <ul>
+                            
+                            {% for c in categories %}
+                            <li>
+                                <a href="{% url 'core:category-product-list' c.cid %}"> <img src="{{ c.image.url }}" alt="" style="width: 30px; height: 30px; object-fit: cover; border-radius: 10px;" />{{ c.title }}</a><span class="count">{{c.product_count}}</span>
+                            </li>
+                            {% endfor %}
+                            
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+    </main>
+    
+    
+
+{% endblock content %}

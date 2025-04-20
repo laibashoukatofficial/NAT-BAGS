@@ -1,0 +1,12 @@
+Order Confirmation
+
+Dear Customer,
+
+Your order with details:
+Order ID: {{ order.id }}
+Total Amount: PKR {{ order.total_amt }}
+
+has been successfully placed. Thank you for your purchase!
+
+Regards,
+Your Store Team

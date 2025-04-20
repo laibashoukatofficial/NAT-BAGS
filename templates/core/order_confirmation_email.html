@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmation</title>
+</head>
+<body>
+    <h2>Order Confirmation</h2>
+    <p>Dear Customer,</p>
+    <p>Your order with details:</p>
+    <ul>
+        <li>Order ID: {{ order.id }}</li>
+        <li>Total Amount: PKR {{ order.total_amt }}</li>
+        
+    </ul>
+    <p>has been successfully placed. Thank you for your purchase!</p>
+    <p>Regards,</p>
+    <p>Your Store Team</p>
+</body>
+</html>
